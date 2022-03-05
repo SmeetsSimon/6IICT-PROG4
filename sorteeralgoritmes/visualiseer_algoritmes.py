@@ -37,8 +37,8 @@ class Displayinformatie:
         # moeten onthouden 
         # blok_breedte: Breedte van een blok (hou rekening met padding). Omgezet naar een integer
         self.blok_breedte = ...
-        # blok_hoogte: Hoogte van het blok met de laagste waarde. Omgezet naar een integer
-        self.blok_breedte = ...
+        # blok_hoogte: Hoogte van het blok met de laagste waarde. Omgezet naar een integer (geg)
+        self.blok_hoogte = int((self.hoogte - self.PADDING_HOOGTE) / (self.max_waarde-self.min_waarde)) 
         # De beginpositie waarop het eerste blok getekend mag worden. Omgezet naar een integer
         self.begin_x = ...
         
