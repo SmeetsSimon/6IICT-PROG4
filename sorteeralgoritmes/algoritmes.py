@@ -19,13 +19,14 @@ def bubbel_sort(lijst):
 
 # Het insertion_sort algoritme
 def insertion_sort(lijst):
+    # yield de twee blokken die met elkaar vergeleken worden.
     pass
 
-# Het bozo_sort algoritme. Gebruik als yield -2. Alle blokken worden tegelijk gewisseld. Een actief blok aanduiden is dus niet mogelijk
+# Het bozo_sort algoritme. 
 def bozo_sort(lijst):
+    # Gebruik als yield -2. Alle blokken worden tegelijk gewisseld. Een actief blok aanduiden is dus niet mogelijk
     pass
 
-# Extra: probeer het merge_sort algoritme te bouwen. Tip: het internet is je vriend
 
 
 
