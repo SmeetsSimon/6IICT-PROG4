@@ -11,3 +11,5 @@ lijst = [4,2,8,5,1,0,9]
 insertion_sort(lijst)
 print(lijst)
 
+
+

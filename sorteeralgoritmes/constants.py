@@ -10,11 +10,19 @@ class Kleur:
     # Maak ook een "gradient" variabele aan, 
     # dit is een lijst die bestaat uit drie kleuren grijs:
     # [127, 127, 127], [160, 160, 160], [192, 192, 192] 
-    pass
+    zwart = (0,0,0)
+    wit = (255,255,255)
+    groen = (0,255,0)
+    rood = (255,0,0)
+    gradient = [(128,128,128), (211,211,211), (192,192,192)]
+
+    
 
 # Klasse om de fonts bij te houden
 class Fonts:
     # Maak twee fonts aan MBV pygame:
     # FONT_NORMAAL: met lettertype arial en grootte 30
     # FONT_GROOT: met lettertype arial en grootte 60
-    pass
+    FONT_NORMAAL = pygame.font.SysFont("arial.ttf",30)
+    FONT_GROOT = pygame.font.SysFont("arial.ttf",60)
+    
