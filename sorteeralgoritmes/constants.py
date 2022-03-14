@@ -10,11 +10,11 @@ class Kleur:
     # Maak ook een "gradient" variabele aan, 
     # dit is een lijst die bestaat uit drie kleuren grijs:
     # [127, 127, 127], [160, 160, 160], [192, 192, 192] 
-    zwart = (0,0,0)
-    wit = (255,255,255)
-    groen = (0,255,0)
-    rood = (255,0,0)
-    gradient = [(128,128,128), (211,211,211), (192,192,192)]
+    ZWART = (0,0,0)
+    WIT = (255,255,255)
+    GROEN = (0,255,0)
+    ROOD = (255,0,0)
+    GRADIENT = [(128,128,128), (211,211,211), (192,192,192)]
 
     
 
