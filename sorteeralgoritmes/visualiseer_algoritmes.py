@@ -111,7 +111,7 @@ def teken_actief_algoritme(display_info, kleur, font, algoritme):
 
 # Functie om de huidige staat van de lijst te tekenen
 # De "actieve blokken" krijgen de kleuren rood en groen
-def teken_lijst(display_info, kleur):
+def teken_lijst(display_info, kleur, actieve_blokken):
 
     lijst = display_info.lijst
     # Vul input aan OBV onderstaande vereisten
@@ -139,8 +139,8 @@ def teken_lijst(display_info, kleur):
         )
         blok_kleur = kleur.GRADIENT[i%3]
 
-        # if i in actieve_blokken:
-        #     ...
+        if i in actieve_blokken:
+            blok_kleur = actieve_blokken[i]
 
         pygame.draw.rect(display_info.display, blok_kleur, (x,y, display_info.blok_breedte, display_info.hoogte))
 
@@ -153,7 +153,7 @@ def main():
     klok = pygame.time.Clock()
 
     # Hoeveel blokken we willen sorteren en tussen welke waardes ze zich bevinden (Let op: hoe groter de lijst, hoe langer het duurt)
-    n = 10
+    n = 25
     min_waarde = 0
     max_waarde = 420
 
@@ -171,17 +171,18 @@ def main():
 
     # Teken eerste versie van de display.
     teken_scherm_statisch(display_info, kleur, font)
-    teken_actief_algoritme(display_info, kleur, font, "Bubbel sort")
+    teken_actief_algoritme(display_info, kleur, font, "bubbel sort")
     # In eerste instantie zijn er nog geen "actieve blokken", geef daarom een leeg dictionary mee
-    teken_lijst(display_info, kleur)
+    teken_lijst(display_info, kleur, {})
     pygame.display.flip()
     
     
     while run:
+        pygame.display.flip()
         # Laat programma lopen op 60 FPS
         # Update de display (gebruik hiervoor een functie van pygame)
 
-        klok.tick(60)
+        klok.tick(100)
 
         # We zullen een generator gebruiken om door het algoritme te lopen
         # Een generator zal onthouden wat zijn huidige staat is, wanneer deze wordt onderbroken
@@ -189,8 +190,8 @@ def main():
         # Als je nog niet bekend bent met generators. Zoek wat tutorials op en maak wat simpele oefeningen (bvb in test.py)
         if sorteren:
             try:
-                i, j, begin = next(actief_algoritme_generator)
-                i += begin
+                i, j = next(actief_algoritme_generator)
+                
                 teken_lijst(display_info, kleur, {i: kleur.GROEN, j: kleur.ROOD})  # Vul de dictionary in met i = groen, j = rood
             except StopIteration:  # Als de lijst helemaal doorlopen geeft de generator deze error
                 sorteren = False
@@ -199,26 +200,45 @@ def main():
         # Creëer de keyhandles voor de simulatie:
         # QUIT: Simulatie moet stoppen met "runnen"
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                run = False
+        
 
 
         # r: De simulatie moet resetten. Dit betekent dat het sorteren stopt en er een nieuw lijst gegenereerd wordt
         #    (Vergeet niet om deze nieuwe lijst in display_info te "setten" en te tekenen op de display)
-            elif event.type == pygame.KEYDOWN:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False        
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
-                    main().run
+                    main().runs
+                elif event.key == pygame.K_SPACE:
+                
+                    sorteren = True 
+                    actief_algoritme_generator = actief_algoritme(display_info.lijst)
+
+
+                elif event.key == pygame.K_b:
+                    actief_algoritme = a.bubbel_sort
+                    teken_actief_algoritme(display_info, kleur, font, "Bubbel sort")
+                elif event.key == pygame.K_i:
+                    actief_algoritme = a.insertion_sort
+                    teken_actief_algoritme(display_info, kleur, font, "Insertrion sort")
+                elif event.key == pygame.K_z:
+                    actief_algoritme = a.bozo_sort
+                    teken_actief_algoritme(display_info, kleur, font, "Bozo sort")
+            
 
         # spatie: Start met sorteren
-                if event.key == pygame.K_SPACE:
-                    sorteren = True
+
         # b: Zet het actief_algoritme naar bubbel_sort en verander actief algoritme op display naar "Bubbel sort"
         #    Deze toets mag enkel iets doen zolang het programma niet aan het sorteren is.
+                
         # i: Zet het actief_algoritme naar insertion_sort en verander actief algoritme op display naar "Insertion sort"
         #    Deze toets mag enkel iets doen zolang het programma niet aan het sorteren is.
+                
         # z: Zet het actief_algoritme naar bozo_sort en verander actief algoritme op display naar "Bozo sort"
         #    Deze toets mag enkel iets doen zolang het programma niet aan het sorteren is.
+                
 
     # Stop pygame als de "QUIT" toets is ingeduwd.
     pygame.quit()

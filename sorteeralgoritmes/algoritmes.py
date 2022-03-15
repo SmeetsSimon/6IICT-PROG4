@@ -15,7 +15,7 @@ def bubbel_sort(lijst):
                lijst[j]=lijst[j+1]
                lijst[j+1]=tmp
 
-               yield j, j+1 # Volgorde: Groen blok (links), Rood blok (rechts)
+            yield j, j+1 # Volgorde: Groen blok (links), Rood blok (rechts)
 
 # Het insertion_sort algoritme
 def insertion_sort(lijst):
