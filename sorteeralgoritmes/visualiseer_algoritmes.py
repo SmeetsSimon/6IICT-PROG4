@@ -153,7 +153,7 @@ def main():
     klok = pygame.time.Clock()
 
     # Hoeveel blokken we willen sorteren en tussen welke waardes ze zich bevinden (Let op: hoe groter de lijst, hoe langer het duurt)
-    n = 25
+    n = 8
     min_waarde = 0
     max_waarde = 420
 
@@ -182,7 +182,7 @@ def main():
         # Laat programma lopen op 60 FPS
         # Update de display (gebruik hiervoor een functie van pygame)
 
-        klok.tick(100)
+        klok.tick(60)
 
         # We zullen een generator gebruiken om door het algoritme te lopen
         # Een generator zal onthouden wat zijn huidige staat is, wanneer deze wordt onderbroken
@@ -210,6 +210,10 @@ def main():
                 run = False        
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_r:
+                    # sorteren = False
+                    # lijst = genereer_begin_lijst(min_waarde, max_waarde, n)
+                    # display_info.set_lijst(lijst)
+                    # teken_lijst(display_info, kleur, {})
                     main().runs
                 elif event.key == pygame.K_SPACE:
                 
@@ -218,14 +222,17 @@ def main():
 
 
                 elif event.key == pygame.K_b:
-                    actief_algoritme = a.bubbel_sort
-                    teken_actief_algoritme(display_info, kleur, font, "Bubbel sort")
+                    if sorteren == False:
+                        actief_algoritme = a.bubbel_sort
+                        teken_actief_algoritme(display_info, kleur, font, "Bubbel sort")
                 elif event.key == pygame.K_i:
-                    actief_algoritme = a.insertion_sort
-                    teken_actief_algoritme(display_info, kleur, font, "Insertrion sort")
+                    if sorteren == False:
+                        actief_algoritme = a.insertion_sort
+                        teken_actief_algoritme(display_info, kleur, font, "Insertrion sort")
                 elif event.key == pygame.K_z:
-                    actief_algoritme = a.bozo_sort
-                    teken_actief_algoritme(display_info, kleur, font, "Bozo sort")
+                    if sorteren == False:
+                        actief_algoritme = a.bozo_sort
+                        teken_actief_algoritme(display_info, kleur, font, "Bozo sort")
             
 
         # spatie: Start met sorteren

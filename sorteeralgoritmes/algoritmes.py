@@ -19,13 +19,43 @@ def bubbel_sort(lijst):
 
 # Het insertion_sort algoritme
 def insertion_sort(lijst):
-    # yield de twee blokken die met elkaar vergeleken worden.
-    pass
+    for step in range(1, len(lijst)):
+        key = lijst[step]
+        j = step - 1
+             
+        while j >= 0 and key < lijst[j]:
+            lijst[j + 1] = lijst[j]
+            j = j - 1
+    
+        lijst[j + 1] = key
+    # for i in range(len(lijst)):         
+    #      waarde = lijst[i]               
+    #      for j in range(0, i):         
+    #          if waarde<lijst[j]:         
+    #              waarde, lijst[j] = lijst[j], waarde  
+    #      lijst[i] = waarde 
+
 
 # Het bozo_sort algoritme. 
 def bozo_sort(lijst):
-    # Gebruik als yield -2. Alle blokken worden tegelijk gewisseld. Een actief blok aanduiden is dus niet mogelijk
-    pass
+    
+    status = [False]
+    while True:
+        if False in status:
+            True
+            random.shuffle(lijst)
+        else:
+            False
+        status = []
+        for i in range(len(lijst) - 1):  
+            waarde1 = lijst[i]
+            waarde2 = lijst[i + 1]
+            yield -2, -2
+            if waarde1 < waarde2:
+                status.append(True)
+            else:
+                status.append(False)
+                break
 
 
 
